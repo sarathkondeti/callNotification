@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WebSockets</title>
+    </head>
+    <body>
+
+        <div id="log"></div>
+        <!-- <button id='button' onclick="notifyMe()">click me</button> -->
+
+        <script type="text/javascript">
+
+            function notifyMe() {
+                if (!window.Notification) {
+                    console.log('Browser does not support notifications.');
+                } else {
+                    // check if permission is already granted
+                    if (Notification.permission === 'granted') {
+                        // show notification here
+                        var notify = new Notification('Hi there!', {
+                            body: 'How are you doing?',
+                            icon: 'https://bit.ly/2DYqRrh',
+                        });
+                    } else {
+                        // request permission from user
+                        Notification.requestPermission().then(function (p) {
+                            if (p === 'granted') {
+                                // show notification here
+                                var notify = new Notification('Hi there!', {
+                                    body: 'How are you doing?',
+                                    icon: 'https://bit.ly/2DYqRrh',
+                                });
+                            } else {
+                                console.log('User blocked notifications.');
+                            }
+                        }).catch(function (err) {
+                            console.error(err);
+                        });
+                    }
+                }
+            }
+
+
+            var sock = new WebSocket("ws://127.0.0.1:5001");
+
+
+            sock.onopen = function(event){
+                setTimeout(function(){
+                    sock.send('Hey there!');
+                },1000);
+            };
+
+
+            sock.onmessage = function(event){
+                console.log(event);
+                var log=document.getElementById('log');
+                log.innerHTML +=event.data + '<br>';
+                notifyMe();
+            };
+
+
+
+        </script>
+
+    </body>
+</html>
