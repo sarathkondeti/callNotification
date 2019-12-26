@@ -1,0 +1,22 @@
+{
+  "name": "call-server",
+  "version": "1.0.0",
+  "description": "A server for forwarding calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarathsky/callNotification.git"
+  },
+  "author": "Sarath Chandra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarathsky/callNotification/issues"
+  },
+  "homepage": "https://github.com/sarathsky/callNotification#readme",
+  "dependencies": {
+    "ws": "^7.2.1"
+  }
+}
