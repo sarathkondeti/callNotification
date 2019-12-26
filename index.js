@@ -1,17 +1,18 @@
 var http=require('http');
 
-var server=require('ws').Server;
-var s=new server({port:5001});
+// var server=require('ws').Server;
+// var wsport=process.env.PORT || 5001
+// var s=new server({port:wsport});
+//
+// s.on('connection',(ws)=>{
+//     ws.on('message',(message)=>{
+//         console.log('Received: ' + message);
+//         ws.send('hello dear..');
+//     });
+//
+// });
 
-s.on('connection',(ws)=>{
-    ws.on('message',(message)=>{
-        console.log('Received: ' + message);
-        ws.send('hello dear..');
-    });
-
-});
-
-
+const httpport = process.env.PORT || 3000
 http.createServer((req,res)=>{
     s.clients.forEach((client)=>{
         console.log('Msg sent to browser..');
@@ -19,4 +20,6 @@ http.createServer((req,res)=>{
     });
     res.write('Server has received your msg..');
     res.end();
-}).listen(5002);
+}).listen(httpport,()=>{
+    console.log('http listing on '+httpport);
+});
