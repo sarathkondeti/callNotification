@@ -1,9 +1,10 @@
 {
   "name": "call-server",
   "version": "1.0.0",
-  "description": "A server for forwarding calls",
-  "main": "index.js",
+  "description": "just a simple server",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/sarathsky/callNotification/issues"
   },
-  "homepage": "https://github.com/sarathsky/callNotification#readme",
-  "dependencies": {
-    "ws": "^7.2.1"
-  }
+  "homepage": "https://github.com/sarathsky/callNotification#readme"
 }
