@@ -10,7 +10,6 @@ http.createServer((req,res)=>{
         fs.readFile("website/index.html", function (err, data) {
             res.writeHead(200, {'Content-Type': 'text/html'});
             res.write(data);
-            res.write('<h1>wsport '+wsport+'</h1>');
             res.end();
         });
         return;
@@ -22,7 +21,6 @@ http.createServer((req,res)=>{
     }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
-    res.write('<h1>wsport '+wsport+'</h1>');
     res.write('<h1>httpport '+httpport+'</h1>');
 
     res.end('<h1>Your msg has been received..</h1>');
