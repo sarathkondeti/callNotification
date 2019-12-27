@@ -1,39 +1,42 @@
 var http=require('http');
+var fs=require('fs');
 
-// var server=require('ws').Server;
-// var wsport=process.env.PORT || 5001;
-// var s=new server({port:wsport});
-//
-// s.on('connection',(ws)=>{
-//     ws.on('message',(message)=>{
-//         console.log('Received: ' + message);
-//         ws.send('hello dear..');
-//     });
-//
-// });
+const httpport = process.env.PORT || 5002;
+const wsport=process.env.PORT || 5001;
 
-const httpport = process.env.PORT || 3000;
 http.createServer((req,res)=>{
-    // s.clients.forEach((client)=>{
-    //     console.log('Msg sent to browser..');
-    //     client.send('You got a call..');
-    // });
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
-    res.end('<h1>Your msg has been received..</h1>');
+
+    if(req.url=='/ws'){
+        fs.readFile("website/index.html", function (err, data) {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            res.write('<h1>wsport '+wsport+'</h1>');
+            res.end();
+        });
+        return;
+    }else if(req.url=='/http'){
+        s.clients.forEach((client)=>{
+            console.log('Msg sent to browser..');
+            client.send('You got a call..');
+        });
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<h1>wsport '+wsport+'</h1>');
+        res.write('<h1>httpport '+httpport+'</h1>');
+
+        res.end('<h1>Your msg has been received..</h1>');
+    }
 }).listen(httpport,()=>{
     console.log('http listing on '+httpport);
 });
 
-// const http = require('http');
-// const port = process.env.PORT || 3000
-//
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/html');
-//   res.end('<h1>Hello World</h1>');
-// });
-//
-// server.listen(port,() => {
-//   console.log(`Server running at port `+port);
-// });
+var wsserver=require('ws').Server;
+var s=new wsserver({port:wsport});
+
+s.on('connection',(ws)=>{
+    ws.on('message',(message)=>{
+        console.log('Received: ' + message);
+        ws.send('hello dear..');
+    });
+
+});
