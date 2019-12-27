@@ -19,13 +19,14 @@ http.createServer((req,res)=>{
         //     console.log('Msg sent to browser..');
         //     client.send('You got a call..');
         // });
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.write('<h1>wsport '+wsport+'</h1>');
-        res.write('<h1>httpport '+httpport+'</h1>');
-
-        res.end('<h1>Your msg has been received..</h1>');
     }
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.write('<h1>wsport '+wsport+'</h1>');
+    res.write('<h1>httpport '+httpport+'</h1>');
+
+    res.end('<h1>Your msg has been received..</h1>');
+
 }).listen(httpport,()=>{
     console.log('http listing on '+httpport);
 });
