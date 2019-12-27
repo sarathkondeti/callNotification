@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/sarathsky/callNotification/issues"
   },
-  "homepage": "https://github.com/sarathsky/callNotification#readme"
+  "homepage": "https://github.com/sarathsky/callNotification#readme",
+  "dependencies": {
+    "ws": "^7.2.1"
+  }
 }
