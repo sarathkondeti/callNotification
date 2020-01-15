@@ -5,9 +5,11 @@
         <title>WebSockets</title>
     </head>
     <body>
-        <h1>This is the WS page..</h1>
-        <div id="log"></div>
+        <h1>This is the H1..</h1>
         <button id='button' onclick="notifyMe()">click me</button>
+
+        <div id="log"></div>
+
 
         <script type="text/javascript">
 
@@ -43,9 +45,9 @@
 
 
             //var sock = new WebSocket("ws://127.0.0.1:5002");
-            //var sock = new WebSocket("wss://node-server-for-calls.herokuapp.com");
-            var host = location.origin.replace(/^http/, 'ws');
-            var sock = new WebSocket(host);
+            var sock = new WebSocket("wss://node-server-for-calls.herokuapp.com");
+            //var host = location.origin.replace(/^http/, 'ws');
+            //var sock = new WebSocket(host);
 
             sock.onopen = function(event){
                 setTimeout(function(){
