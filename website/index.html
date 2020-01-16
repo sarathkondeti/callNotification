@@ -6,22 +6,27 @@
     </head>
     <body>
         <h1>This is the H1..</h1>
-        <button id='button' onclick="notifyMe()">click me</button>
+        <button id='button' onclick="notifyMe('testing')">click me</button>
 
         <div id="log"></div>
 
 
         <script type="text/javascript">
 
-            function notifyMe() {
+            var log=document.getElementById('log');
+
+            function notifyMe(msg) {
                 if (!window.Notification) {
                     console.log('Browser does not support notifications.');
+                    log.innerHTML +="Browser doesn't support notifications";
+
                 } else {
                     // check if permission is already granted
                     if (Notification.permission === 'granted') {
                         // show notification here
                         var notify = new Notification('Hi there!', {
-                            body: 'How are you doing?',
+                            //body: 'How are you doing?',
+                            body: msg,
                             icon: 'https://bit.ly/2DYqRrh',
                         });
                     } else {
@@ -30,7 +35,8 @@
                             if (p === 'granted') {
                                 // show notification here
                                 var notify = new Notification('Hi there!', {
-                                    body: 'How are you doing?',
+                                    //body: 'How are you doing?',
+                                    body: msg,
                                     icon: 'https://bit.ly/2DYqRrh',
                                 });
                             } else {
@@ -58,9 +64,8 @@
 
             sock.onmessage = function(event){
                 console.log(event);
-                var log=document.getElementById('log');
                 log.innerHTML +="server: " + event.data + '<br>';
-                //notifyMe();
+                notifyMe("Call from "+event.data);
             };
 
         </script>
