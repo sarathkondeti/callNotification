@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WebSockets</title>
+    </head>
+    <body>
+        <h1>This is the H1..</h1>
+        <button id='button' onclick="notifyMe('testing')">click me</button>
+
+        <div id="log"></div>
+
+
+        <script type="text/javascript">
+
+            var log=document.getElementById('log');
+
+            var str="call from mom";
+            var res=str.split(" ");
+            log.innerHTML=res[0]+res[1]+res[2];
+
+        </script>
+
+    </body>
+</html>

@@ -10,7 +10,7 @@ var server = http.createServer((req,res)=>{
         res.write(data);
         res.end();
     });
-    
+
 })
 server.listen(port,()=>{
     console.log('http listing on '+port);
@@ -18,11 +18,21 @@ server.listen(port,()=>{
 
 var wsserver=require('ws').Server;
 var wss=new wsserver({server:server});
-
+var browsyws = null;
 wss.on('connection',(ws)=>{
     ws.on('message',(message)=>{
         console.log('Received: ' + message);
-        ws.send('hello dear..');
+        var msg = message.split(" ");
+        if(msg[0]=="android"){
+            var res = "call " + msg[1] + " " + msg[2];
+            if(browsyws!=null){
+                browsyws.send(res);
+            }
+        }else if(msg[0]=="browsy"){
+            ws.send('hello browsy');
+            browsyws=ws;
+        }
+        //ws.send('hello dear..');
     });
 
 });

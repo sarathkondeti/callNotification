@@ -57,15 +57,29 @@
 
             sock.onopen = function(event){
                 setTimeout(function(){
-                    sock.send('Hey there!');
+                    sock.send('browsy');
                 },1000);
             };
 
 
             sock.onmessage = function(event){
                 console.log(event);
-                log.innerHTML +="server: " + event.data + '<br>';
-                notifyMe("Call from "+event.data);
+                var str=event.data;
+                var msg = str.split(" ");
+                if(msg[0]=="testing"){
+                    log.innerHTML +="server: " + str + '<br>';
+                    notifyMe("testing");
+                }else if(msg[0]=="call"){
+                    log.innerHTML +="server: " + str + '<br>';
+                    notifyMe("Call from "+msg[1]+" "+msg[2]);
+                }else if(msg[0]=="hello"){
+                    log.innerHTML +="server: " + str + '<br>';
+                }else{
+                    log.innerHTML +="the hell? server: " + str + '<br>';
+                    notifyMe("some problem");
+                }
+
+
             };
 
         </script>
