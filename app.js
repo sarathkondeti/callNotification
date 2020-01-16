@@ -31,6 +31,8 @@ wss.on('connection',(ws)=>{
         }else if(msg[0]=="browsy"){
             ws.send('hello browsy');
             browsyws=ws;
+        }else if(msg[0]=="testing"){
+            ws.send("You are gud!");
         }
         //ws.send('hello dear..');
     });
