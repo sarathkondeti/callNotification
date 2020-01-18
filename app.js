@@ -25,6 +25,7 @@ wss.on('connection',(ws)=>{
         var msg = message.split(" ");
         if(msg[0]=="android"){
             var res = "call " + msg[1] + " " + msg[2];
+            ws.send("alright! I'll let browsy know..");
             if(browsyws!=null){
                 browsyws.send(res);
             }
